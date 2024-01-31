@@ -1,0 +1,60 @@
+version: '3.7'
+services:
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: ../.docker/backend/Dockerfile
+    restart: on-failure
+    ports:
+      - 3001:3001
+    env_file:
+      - ./backend/.env
+    networks:
+      - app-tier
+    volumes:
+      - ./backend:/app
+    command: sh -c "npm install && npm run start:dev"
+  
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: ../.docker/frontend/Dockerfile
+    restart: on-failure
+    ports:
+      - 4200:4200
+    networks:
+      - app-tier
+    volumes:
+      - ./frontend:/app
+    command: sh -c "yarn && yarn dev"
+  
+  admin:
+    build: 
+      context: ./admin
+      dockerfile: ../.docker/admin/Dockerfile
+    restart: on-failure
+    ports:
+      - 3000:3000
+    networks:
+      - app-tier
+    volumes:
+      - ./admin:/app
+    command: sh -c "npm install --legacy-peer-deps && npm run start"
+
+  web:
+    image: nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - .docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - app-tier
+
+volumes:
+  mongo-express:
+    external: true
+
+networks:
+  app-tier:
+    driver: bridge
