@@ -5,6 +5,7 @@ import { Breadcrumb } from "@themesberg/react-bootstrap";
 import { DataCourseTable } from "../components/Tables";
 import { useHistory } from "react-router-dom";
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
   let history = useHistory();
   useEffect(() => {
@@ -22,8 +23,8 @@ export default () => {
             className="d-none d-md-inline-block"
             listProps={{ className: "breadcrumb-dark breadcrumb-transparent" }}
           ></Breadcrumb>
-          <h4>Tất Cả Khóa Học</h4>
-          <p className="mb-0">Thông Tin Từng Khóa Học</p>
+          <h4>Tất Cả Sản Phẩm</h4>
+          <p className="mb-0">Thông Tin Từng Sản Phẩm</p>
         </div>
       </div>
 

@@ -48,42 +48,6 @@ export const GeneralInfoForm = () => {
     setHightLights([...highlights, highlight]);
   };
 
-  const onChangeImg = async (e) => {
-    console.log(e.target.files[0]);
-    var data = new FormData();
-    data.append(
-      "file",
-
-      e.target.files[0]
-    );
-    data.append("name", "ahihi");
-
-    var config = {
-      method: "post",
-      url: "https://courses-booking.vercel.app/files/upload",
-      headers: {
-        ...data,
-      },
-      data: data,
-    };
-
-    await axios(config)
-      .then(function (response) {
-        setImages(
-          `https://drive.google.com/thumbnail?id=${response?.data.data.id}`
-        );
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
-  const handleServiceAdd = () => {
-    setLessonsFormList([
-      ...lessonsFormList,
-      { title: "", url: "", isTrial: false },
-    ]);
-  };
 
   const handleServiceRemove = (index) => {
     const list = [...lessonsFormList];
@@ -99,15 +63,11 @@ export const GeneralInfoForm = () => {
         {
           title: titleCourse,
           thumbnail: images,
-          level: level,
           highlights: highlights.map((item) => item.text),
           introduce: introduce,
           overview: overview,
-          lessons: lessonsFormList,
           catalog: catalog,
           price: parseInt(price),
-          durationInSeconds: durationInSeconds,
-          document: document,
         },
         {
           headers: {
@@ -140,13 +100,10 @@ export const GeneralInfoForm = () => {
     setLessonsFormList(list);
   };
 
-  const handleOnchangeURLListLessons = (e, index) => {
+  const handleOnchangeURLImage = (e, index) => {
     const { value } = e.target;
 
-    const list = [...lessonsFormList];
-    list[index].url = value;
-
-    setLessonsFormList(list);
+    setImages(value);
   };
 
   const handleOnchangeTrialListLessons = (e, index) => {
@@ -160,7 +117,7 @@ export const GeneralInfoForm = () => {
     <Card border="light" className="bg-white shadow-sm mb-3">
       <ToastContainer />
       <Card.Body>
-        <h5 className="mb-4">Tạo Khóa Học Mới</h5>
+        <h5 className="mb-4">Tạo Sản Phẩm Mới</h5>
         <Form>
           <Row>
             <Col md={6} className="mb-3">
@@ -175,15 +132,20 @@ export const GeneralInfoForm = () => {
               </Form.Group>
             </Col>
             <Col md={6} className="mb-3">
-              <Form.Group id="image">
-                <Form.Label>Ảnh Bìa Khóa Học</Form.Label>
-                <input type="file" name="file" onChange={onChangeImg} />
-              </Form.Group>
+            <Form.Label>Link Hình Ảnh</Form.Label>
+            <Form.Control
+                  required
+                  type="text"
+                  id="url"
+                  placeholder="Link Ảnh"
+                  value={images}
+                  onChange={(e) => handleOnchangeURLImage(e)}
+                />
             </Col>
           </Row>
           <Row>
             <Col md={3} className="mb-3">
-              <Form.Group id="level">
+              {/* <Form.Group id="level">
                 <Form.Label>Level</Form.Label>
                 <Form.Select
                   type="checkbox"
@@ -195,7 +157,7 @@ export const GeneralInfoForm = () => {
                   <option value="ADVANCE">Nâng Cao</option>
                   <option value="PRO">Chuyên Nghiệp</option>
                 </Form.Select>
-              </Form.Group>
+              </Form.Group> */}
             </Col>
             <Col md={6} className="mb-3">
               <div>
@@ -206,15 +168,17 @@ export const GeneralInfoForm = () => {
                   onChange={(e) => setCatalog(e.target.value)}
                 >
                   <option value=""></option>
-                  <option value="Trà Sữa">Trà Sữa</option>
-                  <option value="Cà Phê">Cà Phê</option>
+                  <option value="Iphone">Iphone</option>
+                  <option value="Laptop">Laptop</option>
+                  <option value="AirPods">AirPods</option>
+                  <option value="Marshall">Marshall</option>
                 </Form.Select>
               </div>
             </Col>
             <Col md={10} className="mb-3">
               <div>
                 <Form.Label>Điểm Nổi Bật Khóa Học</Form.Label>
-                <ReactTags
+               <ReactTags
                   tags={highlights}
                   delimiters={delimiters}
                   handleDelete={handleDeleteHighlights}
@@ -228,7 +192,7 @@ export const GeneralInfoForm = () => {
           <Row>
             <Col sm={5} className="mb-3">
               <Form.Group id="price">
-                <Form.Label>Giá Khóa Học</Form.Label>
+                <Form.Label>Giá Sản Phẩm</Form.Label>
                 <Form.Control
                   required
                   type="number"
@@ -238,7 +202,7 @@ export const GeneralInfoForm = () => {
               </Form.Group>
             </Col>
           </Row>
-          <Row>
+          {/* <Row>
             <Col sm={4} className="mb-3">
               <Form.Group id="price">
                 <Form.Label>Thời Lượng Trung Bình</Form.Label>
@@ -250,9 +214,9 @@ export const GeneralInfoForm = () => {
                 />
               </Form.Group>
             </Col>
-          </Row>
+          </Row> */}
 
-          <h5 className="my-4">Giới Thiệu Tổng Quan Khóa Học</h5>
+          <h5 className="my-4">Giới Thiệu</h5>
           <Row>
             <Col sm={15} className="mb-3">
               <Form.Group id="overview">
@@ -277,7 +241,7 @@ export const GeneralInfoForm = () => {
               </Form.Group>
             </Col>
           </Row>
-          <h5 className="my-4">Danh Sách Các Bài Học</h5>
+          {/* <h5 className="my-4">Danh Sách Các Bài Học</h5>
           {lessonsFormList.map((singleList, index) => (
             <Col sm={10} className="mb-3" key={index}>
               <Form.Group className="mb-2">
@@ -327,13 +291,13 @@ export const GeneralInfoForm = () => {
                 />
               </Form.Group>
             </Col>
-          ))}
-          <div className="mt-3 mb-10">
+          ))} */}
+          {/* <div className="mt-3 mb-10">
             <Button variant="primary" type="submit" onClick={handleServiceAdd}>
               Thêm Bài Học
             </Button>
-          </div>
-
+          </div> */}
+{/* 
           <div>
             <Form.Control
               type="text"
@@ -342,7 +306,7 @@ export const GeneralInfoForm = () => {
               value={document}
               onChange={(e) => setDocument(e.target.value)}
             />
-          </div>
+          </div> */}
           <div className="mt-3">
             {!loading ? (
               <button

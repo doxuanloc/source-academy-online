@@ -80,13 +80,18 @@ function Modals({ showModals, setShowModals, dataDetail }) {
       isEndSell: false,
     });
     await axios
-      .put(`${DATA_COURSE_URL}/${dataDetail._id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
+      .put(
+        `${DATA_COURSE_URL}/${dataDetail._id}`,
+        {
+          data: data,
         },
-        data: data,
-      })
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
       .then((res) => {
         console.log(res);
       })
@@ -103,8 +108,7 @@ function Modals({ showModals, setShowModals, dataDetail }) {
         show={showModals}
         setShow={setShowModals}
         size="lg"
-        aria-labelledby="example-modal-sizes-title-lg"
-      >
+        aria-labelledby="example-modal-sizes-title-lg">
         <Modal.Header closeButton>
           <Modal.Title>Chi Tiết Khóa Học</Modal.Title>
         </Modal.Header>
@@ -133,8 +137,7 @@ function Modals({ showModals, setShowModals, dataDetail }) {
               <Form.Select
                 type="checkbox"
                 required
-                onChange={(e) => setEditLevel(e.target.value)}
-              >
+                onChange={(e) => setEditLevel(e.target.value)}>
                 <option disabled>{editLevel}</option>
                 <option value="basic">BASIC</option>
                 <option value="advance">ADVANCE</option>
@@ -167,8 +170,7 @@ function Modals({ showModals, setShowModals, dataDetail }) {
                           <button
                             type="button"
                             className="btn btn-outline-danger"
-                            onClick={(index) => handleServiceRemove(index)}
-                          >
+                            onClick={(index) => handleServiceRemove(index)}>
                             Xóa
                           </button>
                         )}
@@ -210,8 +212,7 @@ function Modals({ showModals, setShowModals, dataDetail }) {
                 <Button
                   variant="primary"
                   type="submit"
-                  onClick={handleServiceAdd}
-                >
+                  onClick={handleServiceAdd}>
                   Thêm Bài Học
                 </Button>
               </div>

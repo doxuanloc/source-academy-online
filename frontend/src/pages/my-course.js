@@ -92,8 +92,7 @@ export default function MyCourse() {
                       type="button"
                       className="btn mb-40 mt-10"
                       onClick={() => setShowModalCode(true)}
-                      style={{ backgroundColor: "#597535", color: "white" }}
-                    >
+                      style={{ backgroundColor: "#597535", color: "white" }}>
                       Nhập CODE Khóa Học Đã Mua !
                     </button>
                     <div className="row mb-10">
@@ -103,8 +102,7 @@ export default function MyCourse() {
                             <div
                               className={`course-sidebar-info ${
                                 loading ? "danger" : "content-hidden"
-                              }`}
-                            >
+                              }`}>
                               <h3 className="drop-btn">Danh Mục</h3>
                               <ul>
                                 <li>
@@ -116,8 +114,7 @@ export default function MyCourse() {
                                     />
                                     <label
                                       className="edu-check-label"
-                                      htmlFor="e-bus"
-                                    >
+                                      htmlFor="e-bus">
                                       Tất Cả
                                     </label>
                                   </div>
@@ -130,8 +127,7 @@ export default function MyCourse() {
                                     />
                                     <label
                                       className="edu-check-label"
-                                      htmlFor="e-bus"
-                                    >
+                                      htmlFor="e-bus">
                                       Cà Phê
                                     </label>
                                   </div>
@@ -146,8 +142,7 @@ export default function MyCourse() {
                                     />
                                     <label
                                       className="edu-check-label"
-                                      htmlFor="e-dev"
-                                    >
+                                      htmlFor="e-dev">
                                       Trà Sữa
                                     </label>
                                   </div>
@@ -164,8 +159,7 @@ export default function MyCourse() {
                       {dataMyCourses?.map((item) => (
                         <div
                           className="col-xl-4 col-lg-6 col-md-6"
-                          key={item._id}
-                        >
+                          key={item._id}>
                           <div className="protfolio-course-2-wrapper mb-30">
                             <div className="student-course-img">
                               <img src={item.thumbnail} alt="course-img" />
@@ -183,8 +177,7 @@ export default function MyCourse() {
                                       style={{
                                         backgroundColor: "#597535",
                                         color: "white",
-                                      }}
-                                    >
+                                      }}>
                                       <i className="flaticon-book pr-10"></i>
                                       Học Ngay!
                                     </button>
@@ -207,7 +200,7 @@ export default function MyCourse() {
                         </div>
                       ))}
 
-                      {dataMyCourses === [] && (
+                      {dataMyCourses?.length === 0 && (
                         <div className="d-block justify-content-center">
                           <div className="alert alert-warning" role="alert">
                             Bạn Chưa Có Khóa Học Nào!{" "}

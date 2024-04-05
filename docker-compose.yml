@@ -1,60 +1,48 @@
 version: '3.7'
 services:
-  backend:
-    build: 
-      context: ./backend
-      dockerfile: ../.docker/backend/Dockerfile
-    restart: on-failure
-    ports:
-      - 3001:3001
-    env_file:
-      - ./backend/.env
-    networks:
-      - app-tier
-    volumes:
-      - ./backend:/app
-    command: sh -c "npm install && npm run start:dev"
-  
   frontend:
     build: 
-      context: ./frontend
-      dockerfile: ../.docker/frontend/Dockerfile
-    restart: on-failure
-    ports:
-      - 4200:4200
-    networks:
-      - app-tier
+      context: .
+      dockerfile: ./.docker/frontend/Dockerfile
+    working_dir: /app
     volumes:
       - ./frontend:/app
-    command: sh -c "yarn && yarn dev"
-  
-  admin:
-    build: 
-      context: ./admin
-      dockerfile: ../.docker/admin/Dockerfile
-    restart: on-failure
     ports:
       - 3000:3000
-    networks:
-      - app-tier
+
+  backend:
+    build: 
+      context: .
+      dockerfile: ./.docker/backend/Dockerfile
+    working_dir: /app
     volumes:
-      - ./admin:/app
-    command: sh -c "npm install --legacy-peer-deps && npm run start"
+      - ./backend:/app
+    ports:
+      - 3002:3002
+
+  # admin:
+  #   build: 
+  #     context: .
+  #     dockerfile: ./.docker/admin/Dockerfile
+  #   working_dir: /app
+  #   volumes:
+  #     - ./admin:/app
+  #   ports:
+  #     - 3001:3001
 
   web:
-    image: nginx
-    restart: always
-    ports:
-      - "80:80"
+    build:
+      context: .
+      dockerfile: ./.docker/nginx/Dockerfile
     volumes:
-      - .docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-    networks:
-      - app-tier
-
-volumes:
-  mongo-express:
-    external: true
-
+      - ./.docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - backend
+      - frontend
+      # - admin
+    ports:
+      - 80:80
+      - 443:443
 networks:
   app-tier:
     driver: bridge

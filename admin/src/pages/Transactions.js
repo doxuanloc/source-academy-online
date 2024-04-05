@@ -12,6 +12,7 @@ import {
 
 import { TransactionsTable } from "../components/Tables";
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
   const handleFiller = (e) => {
     console.log(e);
@@ -25,7 +26,7 @@ export default () => {
             listProps={{ className: "breadcrumb-dark breadcrumb-transparent" }}
           ></Breadcrumb>
           <h4>Danh Sách Giao Dịch</h4>
-          <p className="mb-0">Thông Tin Trang Khóa Học</p>
+          <p className="mb-0">Thông Tin Trang Sản Phẩm</p>
         </div>
       </div>
       {/* 

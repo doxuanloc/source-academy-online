@@ -128,7 +128,7 @@ export class CoursesController {
     const filter = { $and: [{ isEndSell: { $ne: true } }] } as any;
 
     if (title) {
-      filter['$and'].push({ $text: { $search: title } });
+      filter['$and'].push({ title: { $regex: `.*${title}.*`, $options: 'i' } });
     }
     if (level && level.toLowerCase() !== 'all') {
       filter['$and'].push({ level });

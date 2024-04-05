@@ -37,7 +37,6 @@ export class CoursesService {
     return (
       await this.courseModel.create({
         ...createCourseDto,
-        numberOfLessons: createCourseDto?.lessons?.length ?? 0,
       })
     ).toObject();
   }
@@ -63,7 +62,6 @@ export class CoursesService {
         { _id: new mongoose.Types.ObjectId(id) },
         {
           ...updateCourseDto,
-          numberOfLessons: updateCourseDto?.lessons?.length ?? 0,
         },
         { returnDocument: 'after' },
       )
@@ -102,10 +100,10 @@ export class CoursesService {
         }
       }
     }
-    if ((!isPurchasedCourse || !user) && !isAdmin) {
-      course.document = '';
-    }
-    course['isBuy'] = isPurchasedCourse;
+    // if ((!isPurchasedCourse || !user) && !isAdmin) {
+    //   course.document = '';
+    // }
+    // course['isBuy'] = isPurchasedCourse;
 
     return course;
   }

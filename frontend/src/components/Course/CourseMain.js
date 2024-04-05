@@ -13,9 +13,11 @@ const CourseMain = () => {
   const [numPage, setNumPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [isActive, setActive] = useState("false");
-  const DATA_COURSES_URL = "courses";
+  let DATA_COURSES_URL = "courses";
 
   const router = useRouter();
+  const { title } = router.query;
+  title !== "" ? (DATA_COURSES_URL = `courses?title=${title}`) : "courses";
 
   async function getDataCourse() {
     const token = localStorage.getItem("token");
@@ -58,7 +60,7 @@ const CourseMain = () => {
 
   useEffect(() => {
     getDataCourse();
-  }, []);
+  }, [title]);
 
   const handleToggle = () => {
     setActive(!isActive);

@@ -21,6 +21,7 @@ const HeaderUser = ({ setShowHeaderUser }) => {
   const [usernameProfile, setUsernameProfile] = useState("");
   const [avtUserProfile, setAvtUserProfile] = useState("");
   const [token, setToken] = useState();
+  const [search, setSearch] = useState("");
 
   const GET_USER_URL = "auth/profile/";
 
@@ -89,8 +90,7 @@ const HeaderUser = ({ setShowHeaderUser }) => {
           sticky
             ? "sticky header-area sticky-header"
             : "header-area sticky-header"
-        }
-      >
+        }>
         <div className="container-fluid">
           <div className="header-main-wrapper">
             <div className="row align-items-center">
@@ -118,70 +118,60 @@ const HeaderUser = ({ setShowHeaderUser }) => {
                             xmlns="http://www.w3.org/2000/svg"
                             width="18.087"
                             height="18.087"
-                            viewBox="0 0 18.087 18.087"
-                          >
+                            viewBox="0 0 18.087 18.087">
                             <path
                               id="Path_25"
                               data-name="Path 25"
                               d="M3.768,0H.754A.754.754,0,0,0,0,.754V3.768a.754.754,0,0,0,.754.754H3.768a.754.754,0,0,0,.754-.754V.754A.754.754,0,0,0,3.768,0Z"
-                              fill="#141517"
-                            ></path>
+                              fill="#141517"></path>
                             <path
                               id="Path_26"
                               data-name="Path 26"
                               d="M3.768,9H.754A.754.754,0,0,0,0,9.754v3.015a.754.754,0,0,0,.754.754H3.768a.754.754,0,0,0,.754-.754V9.754A.754.754,0,0,0,3.768,9Z"
                               transform="translate(0 -2.217)"
-                              fill="#141517"
-                            ></path>
+                              fill="#141517"></path>
                             <path
                               id="Path_27"
                               data-name="Path 27"
                               d="M3.768,18H.754A.754.754,0,0,0,0,18.754v3.015a.754.754,0,0,0,.754.754H3.768a.754.754,0,0,0,.754-.754V18.754A.754.754,0,0,0,3.768,18Z"
                               transform="translate(0 -4.434)"
-                              fill="#141517"
-                            ></path>
+                              fill="#141517"></path>
                             <path
                               id="Path_28"
                               data-name="Path 28"
                               d="M12.768,0H9.754A.754.754,0,0,0,9,.754V3.768a.754.754,0,0,0,.754.754h3.015a.754.754,0,0,0,.754-.754V.754A.754.754,0,0,0,12.768,0Z"
                               transform="translate(-2.217)"
-                              fill="#141517"
-                            ></path>
+                              fill="#141517"></path>
                             <path
                               id="Path_29"
                               data-name="Path 29"
                               d="M12.768,9H9.754A.754.754,0,0,0,9,9.754v3.015a.754.754,0,0,0,.754.754h3.015a.754.754,0,0,0,.754-.754V9.754A.754.754,0,0,0,12.768,9Z"
                               transform="translate(-2.217 -2.217)"
-                              fill="#141517"
-                            ></path>
+                              fill="#141517"></path>
                             <path
                               id="Path_30"
                               data-name="Path 30"
                               d="M12.768,18H9.754A.754.754,0,0,0,9,18.754v3.015a.754.754,0,0,0,.754.754h3.015a.754.754,0,0,0,.754-.754V18.754A.754.754,0,0,0,12.768,18Z"
                               transform="translate(-2.217 -4.434)"
-                              fill="#141517"
-                            ></path>
+                              fill="#141517"></path>
                             <path
                               id="Path_31"
                               data-name="Path 31"
                               d="M21.768,0H18.754A.754.754,0,0,0,18,.754V3.768a.754.754,0,0,0,.754.754h3.015a.754.754,0,0,0,.754-.754V.754A.754.754,0,0,0,21.768,0Z"
                               transform="translate(-4.434)"
-                              fill="#141517"
-                            ></path>
+                              fill="#141517"></path>
                             <path
                               id="Path_32"
                               data-name="Path 32"
                               d="M21.768,9H18.754A.754.754,0,0,0,18,9.754v3.015a.754.754,0,0,0,.754.754h3.015a.754.754,0,0,0,.754-.754V9.754A.754.754,0,0,0,21.768,9Z"
                               transform="translate(-4.434 -2.217)"
-                              fill="#141517"
-                            ></path>
+                              fill="#141517"></path>
                             <path
                               id="Path_33"
                               data-name="Path 33"
                               d="M21.768,18H18.754a.754.754,0,0,0-.754.754v3.015a.754.754,0,0,0,.754.754h3.015a.754.754,0,0,0,.754-.754V18.754A.754.754,0,0,0,21.768,18Z"
                               transform="translate(-4.434 -4.434)"
-                              fill="#141517"
-                            ></path>
+                              fill="#141517"></path>
                           </svg>
                           <span className="text">Khóa Học</span>
                         </figure>
@@ -227,8 +217,12 @@ const HeaderUser = ({ setShowHeaderUser }) => {
                   <div className="header-search d-none d-xxl-block mr-30">
                     <form action="#">
                       <div className="slider-search-icon p-relative">
-                        <input type="text" placeholder="Tìm Khóa Học...." />
-                        <Link href="/course">
+                        <input
+                          type="text"
+                          placeholder="Tìm Khóa Học...."
+                          onChange={(e) => setSearch(e.target.value)}
+                        />
+                        <Link href={`/course?title=${search}`}>
                           <button type="submit">
                             <i className="fas fa-search"></i>
                           </button>
@@ -241,15 +235,13 @@ const HeaderUser = ({ setShowHeaderUser }) => {
                       className="cart-toggle-btn"
                       onClick={() => {
                         setCartOpen(!cartOpen);
-                      }}
-                    >
+                      }}>
                       <div className="header__cart-icon p-relative">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="19.988"
                           height="19.988"
-                          viewBox="0 0 19.988 19.988"
-                        >
+                          viewBox="0 0 19.988 19.988">
                           <g id="trolley-cart" transform="translate(-1 -1)">
                             <path
                               id="Path_36"
@@ -314,8 +306,7 @@ const HeaderUser = ({ setShowHeaderUser }) => {
                               <button
                                 type="button"
                                 className="btn btn-danger"
-                                onClick={logout}
-                              >
+                                onClick={logout}>
                                 Đăng Xuất
                               </button>
                             </li>
@@ -330,8 +321,7 @@ const HeaderUser = ({ setShowHeaderUser }) => {
                       href="#!"
                       onClick={() => {
                         setMenuOpen(!menuOpen);
-                      }}
-                    >
+                      }}>
                       <div className="bar-icon">
                         <span></span>
                         <span></span>
@@ -357,14 +347,12 @@ const HeaderUser = ({ setShowHeaderUser }) => {
         onClick={() => setMenuOpen(false)}
         className={
           menuOpen ? "offcanvas-overlay overlay-signin" : "offcanvas-overlay"
-        }
-      ></div>
+        }></div>
 
       <HeaderCart cartOpen={cartOpen} setCartOpen={setCartOpen} />
       <div
         onClick={() => setCartOpen(false)}
-        className={cartOpen ? "body-overlay opened" : "body-overlay"}
-      ></div>
+        className={cartOpen ? "body-overlay opened" : "body-overlay"}></div>
 
       <SignIn
         signInOpen={signInOpen}
@@ -375,16 +363,14 @@ const HeaderUser = ({ setShowHeaderUser }) => {
         onClick={() => setSignInOpen(false)}
         className={
           signInOpen ? "offcanvas-overlay overlay-open" : "offcanvas-overlay"
-        }
-      ></div>
+        }></div>
 
       <SignUp signUpOpen={signUpOpen} setSingUpOpen={setSingUpOpen} />
       <div
         onClick={() => setSingUpOpen(false)}
         className={
           signUpOpen ? "offcanvas-overlay overlay-open" : "offcanvas-overlay"
-        }
-      ></div>
+        }></div>
     </header>
   );
 };

@@ -17,6 +17,7 @@ import { trafficShares, totalOrders } from "../../data/charts";
 import { useHistory } from "react-router-dom";
 import axios from "../../api/axios";
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
   let history = useHistory();
   const [qualityUsers, setQualityUsers] = useState(0);
@@ -71,7 +72,7 @@ export default () => {
     const token = localStorage.getItem("tokenAdmin");
     await axios
       .get(
-        "https://courses-booking.vercel.app/users?page=0&pageSize=25&sortType=desc&sortField=updatedAt&isPurchased=false",
+        "http://localhost:3002/users?page=0&pageSize=25&sortType=desc&sortField=updatedAt&isPurchased=false",
         {
           headers: {
             Authorization: `Bearer ${token}`,

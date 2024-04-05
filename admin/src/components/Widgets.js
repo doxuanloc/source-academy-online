@@ -19,7 +19,6 @@ import {
 import {
   CircleChart,
   BarChart,
-  SalesValueChart,
   SalesValueChartphone,
 } from "./Charts";
 
@@ -147,7 +146,7 @@ export const CircleChartWidget = (props) => {
             xl={5}
             className="text-xl-center d-flex align-items-center justify-content-xl-center mb-3 mb-xl-0"
           >
-            <CircleChart series={series} />
+            {/* <CircleChart series={series} /> */}
           </Col>
           <Col xs={12} xl={7} className="px-xl-0">
             <h5 className="mb-3">{title}</h5>
@@ -206,7 +205,7 @@ export const BarChartWidget = (props) => {
         </div>
       </Card.Body>
       <Card.Body className="p-2">
-        <BarChart labels={labels} series={series} />
+        {/* <BarChart labels={labels} series={series} /> */}
       </Card.Body>
     </Card>
   );
@@ -347,9 +346,9 @@ export const SalesValueWidget = (props) => {
           </Button>
         </div>
       </Card.Header>
-      <Card.Body className="p-2">
+      {/* <Card.Body className="p-2">
         <SalesValueChart />
-      </Card.Body>
+      </Card.Body> */}
     </Card>
   );
 };
@@ -384,7 +383,7 @@ export const SalesValueWidgetPhone = (props) => {
         </div>
       </Card.Header>
       <Card.Body className="p-2">
-        <SalesValueChartphone />
+        {/* <SalesValueChartphone /> */}
       </Card.Body>
     </Card>
   );

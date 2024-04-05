@@ -14,11 +14,11 @@ export class Course {
   @Prop({ required: true })
   title: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   thumbnail: string;
 
-  @Prop({ type: String, required: true })
-  level: string;
+  // @Prop({ type: String, required: true })
+  // level: string;
 
   @Prop({ type: [String] })
   highlights: string[];
@@ -29,8 +29,8 @@ export class Course {
   @Prop({ type: String, required: true })
   introduce: string;
 
-  @Prop({ type: CourseContent, default: [] })
-  lessons: CourseContent[];
+  // @Prop({ type: CourseContent, default: [] })
+  // lessons: CourseContent[];
 
   @Prop({
     type: Number,
@@ -38,28 +38,28 @@ export class Course {
   })
   price: number;
 
-  @Prop({
-    type: Number,
-    required: true,
-    default: 0,
-  })
-  numberOfStudents: number;
+  // @Prop({
+  //   type: Number,
+  //   required: true,
+  //   default: 0,
+  // })
+  // numberOfStudents: number;
 
-  @Prop({
-    type: Number,
-    required: true,
-    default: 0,
-  })
-  numberOfLessons: number;
+  // @Prop({
+  //   type: Number,
+  //   required: true,
+  //   default: 0,
+  // })
+  // numberOfLessons: number;
 
   @Prop({ type: String })
   catalog: string;
 
-  @Prop({ type: 'boolean' })
-  isEndSell: boolean;
+  // @Prop({ type: 'boolean' })
+  // isEndSell: boolean;
 
-  @Prop({ type: String, required: true })
-  document: string;
+  // @Prop({ type: String, required: true })
+  // document: string;
 
   createdAt: Date;
 

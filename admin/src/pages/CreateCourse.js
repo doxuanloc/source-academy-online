@@ -15,6 +15,7 @@ import { ProfileCardWidget } from "../components/Widgets";
 import { GeneralInfoForm } from "../components/Forms";
 import { useHistory } from "react-router-dom";
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
   let history = useHistory();
   useEffect(() => {
@@ -34,15 +35,14 @@ export default () => {
             className="text-dark me-2"
           >
             <FontAwesomeIcon icon={faBoxOpen} className="me-2" />{" "}
-            <span>Khóa Học</span>
+            <span>Sản Phẩm</span>
           </Dropdown.Toggle>
           <Dropdown.Menu className="dashboard-dropdown dropdown-menu-left mt-2">
-            <Dropdown.Item>
+            {/* <Dropdown.Item>
               <FontAwesomeIcon icon={faFileAlt} className="me-2" /> Tài Liệu
-            </Dropdown.Item>
+            </Dropdown.Item> */}
             <Dropdown.Item>
-              <FontAwesomeIcon icon={faCommentDots} className="me-2" /> Các Khóa
-              Học Đã Đăng
+              <FontAwesomeIcon icon={faCommentDots} className="me-2" /> Các Sản Phẩm Đã Đăng
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
@@ -57,7 +57,7 @@ export default () => {
             </Dropdown.Toggle>
             <Dropdown.Menu className="dashboard-dropdown dropdown-menu-left mt-1">
               <Dropdown.Item>
-                <FontAwesomeIcon icon={faBoxOpen} className="me-2" /> Khóa Học
+                <FontAwesomeIcon icon={faBoxOpen} className="me-2" /> Sản Phẩm
               </Dropdown.Item>
               <Dropdown.Item>
                 <FontAwesomeIcon icon={faStore} className="me-2" /> Người Dùng

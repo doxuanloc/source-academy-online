@@ -144,9 +144,9 @@ export class OrdersService {
       );
       activeCodes.push({ activeCode, course: item.course });
 
-      await this.coursesService.update(item.course._id.toString(), {
-        numberOfStudents: item.course.numberOfStudents + 1,
-      });
+      // await this.coursesService.update(item.course._id.toString(), {
+      //   numberOfStudents: item.course.numberOfStudents + 1,
+      // });
     }
 
     const text = activeCodes
